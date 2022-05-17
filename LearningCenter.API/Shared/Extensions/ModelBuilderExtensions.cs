@@ -13,7 +13,7 @@ public static class ModelBuilderExtensions
             foreach (var property in entity.GetProperties())
             {
                 // TODO: Review syntax
-                property.SetColumnName(property.GetColumnName().ToSnakeCase());
+                property.SetColumnName(property.GetColumnBaseName().ToSnakeCase());
                 
             }
 
