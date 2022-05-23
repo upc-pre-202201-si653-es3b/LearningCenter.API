@@ -49,6 +49,8 @@ public class TutorialService : ITutorialService
         {
             await _tutorialRepository.AddAsync(tutorial);
             await _unitOfWork.CompleteAsync();
+
+            return new TutorialResponse(tutorial);
         }
         catch (Exception e)
         {
