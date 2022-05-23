@@ -37,7 +37,7 @@ public class TutorialRepository : BaseRepository, ITutorialRepository
             .FirstOrDefaultAsync(p => p.Name == name);
     }
 
-    public async Task<IEnumerable<Tutorial>> FindByCategoryId(int categoryId)
+    public async Task<IEnumerable<Tutorial>> FindByCategoryIdAsync(int categoryId)
     {
         return await _context.Tutorials
             .Where(p => p.CategoryId == categoryId)
