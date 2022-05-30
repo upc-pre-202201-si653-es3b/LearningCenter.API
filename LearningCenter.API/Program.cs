@@ -11,12 +11,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add Database Connection
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseMySQL(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+    options => options.UseMySQL(connectionString)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors());
 
 // Add lower case routes
-builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddRouting(
+    options => options.LowercaseUrls = true);
+
 
 
 
