@@ -23,6 +23,8 @@ builder.Services.AddDbContext<AppDbContext>(
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors());
 
+
+
 // Add lower case routes
 builder.Services.AddRouting(
     options => options.LowercaseUrls = true);
@@ -45,12 +47,20 @@ builder.Services.AddAutoMapper(
 
 var app = builder.Build();
 
+// Validation for Ensuring Database Objects are created
+
+using (var scope = app.Services.CreateScope())
+using (var context = scope.ServiceProvider.GetService<AppDbContext>())
+{
+    context.Database.EnsureCreated();
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
