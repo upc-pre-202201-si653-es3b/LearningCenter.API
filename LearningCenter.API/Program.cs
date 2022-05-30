@@ -12,7 +12,11 @@ builder.Services.AddSwaggerGen();
 
 // Add Database Connection
 builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options => options.UseMySQL(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add lower case routes
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 
 
