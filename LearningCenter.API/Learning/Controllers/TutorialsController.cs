@@ -19,6 +19,7 @@ public class TutorialsController : ControllerBase
         _mapper = mapper;
     }
 
+    [HttpGet]
     public async Task<IEnumerable<TutorialResource>> GetAllAsync()
     {
         var tutorials = await _tutorialService.ListAsync();

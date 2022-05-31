@@ -30,11 +30,11 @@ public class TutorialRepository : BaseRepository, ITutorialRepository
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task<Tutorial> FindByNameAsync(string name)
+    public async Task<Tutorial> FindByTitleAsync(string name)
     {
         return await _context.Tutorials
             .Include(p => p.Category)
-            .FirstOrDefaultAsync(p => p.Name == name);
+            .FirstOrDefaultAsync(p => p.Title == name);
     }
 
     public async Task<IEnumerable<Tutorial>> FindByCategoryIdAsync(int categoryId)

@@ -38,11 +38,11 @@ public class TutorialService : ITutorialService
         if (existingCategory == null)
             return new TutorialResponse("Invalid Category");
         
-        // Validate Name
+        // Validate Title
 
-        var existingTutorialWithName = await _tutorialRepository.FindByNameAsync(tutorial.Name);
+        var existingTutorialWithTitle = await _tutorialRepository.FindByTitleAsync(tutorial.Title);
 
-        if (existingTutorialWithName != null)
+        if (existingTutorialWithTitle != null)
             return new TutorialResponse("Tutorial Name already exists.");
 
         try
@@ -76,12 +76,12 @@ public class TutorialService : ITutorialService
         
         // Validate Name
 
-        var existingTutorialWithName = await _tutorialRepository.FindByNameAsync(tutorial.Name);
+        var existingTutorialWithTitle = await _tutorialRepository.FindByTitleAsync(tutorial.Title);
 
-        if (existingTutorialWithName != null && existingTutorialWithName.Id != existingTutorial.Id)
+        if (existingTutorialWithTitle != null && existingTutorialWithTitle.Id != existingTutorial.Id)
             return new TutorialResponse("Tutorial Name already exists.");
 
-        existingTutorial.Name = tutorial.Name;
+        existingTutorial.Title = tutorial.Title;
         existingTutorial.Description = tutorial.Description;
 
         try
@@ -98,8 +98,27 @@ public class TutorialService : ITutorialService
 
     }
 
-    public Task<TutorialResponse> DeleteAsync(int id)
+    public async Task<TutorialResponse> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var existingTutorial = await _tutorialRepository.FindByIdAsync(id);
+        
+        // Validate Tutorial
+
+        if (existingTutorial == null)
+            return new TutorialResponse("Tutorial not found.");
+        
+        try
+        {
+            _tutorialRepository.Remove(existingTutorial);
+            await _unitOfWork.CompleteAsync();
+
+            return new TutorialResponse(existingTutorial);
+            
+        }
+        catch (Exception e)
+        {
+            // Error Handling
+            return new TutorialResponse($"An error occurred while deleting the tutorial: {e.Message}");
+        }
     }
 }

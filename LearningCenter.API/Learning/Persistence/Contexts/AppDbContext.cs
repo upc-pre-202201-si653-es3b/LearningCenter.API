@@ -35,7 +35,7 @@ public class AppDbContext : DbContext
         builder.Entity<Tutorial>().ToTable("Tutorials");
         builder.Entity<Tutorial>().HasKey(p => p.Id);
         builder.Entity<Tutorial>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Tutorial>().Property(p => p.Name).IsRequired().HasMaxLength(50);
+        builder.Entity<Tutorial>().Property(p => p.Title).IsRequired().HasMaxLength(50);
         builder.Entity<Tutorial>().Property(p => p.Description).HasMaxLength(120);
         
         
