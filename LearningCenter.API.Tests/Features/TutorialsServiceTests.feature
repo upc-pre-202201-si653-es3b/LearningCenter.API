@@ -22,7 +22,7 @@ In order to make it available for applications.
           | Id | Name   | Description       | CategoryId |
           | 1  | Sample | A Sample Tutorial | 100        |
         When a Post Request is sent
-          | Name        | Description            | CategoryId |
-          | The New One | The Ultimate Tutorial | 100        |
+          | Name   | Description           | CategoryId |
+          | Sample | The Ultimate Tutorial | 100        |
         Then A Response with Status 400 is received
         And An Error Message with value "Tutorial Name already exists." is returned
