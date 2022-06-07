@@ -1,7 +1,6 @@
 using AutoMapper;
 using LearningCenter.API.Security.Domain.Models;
 using LearningCenter.API.Security.Domain.Services.Communication;
-using Org.BouncyCastle.Asn1.X509;
 
 namespace LearningCenter.API.Security.Mapping;
 
