@@ -60,7 +60,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAutoMapper(
     typeof(LearningCenter.API.Learning.Mapping.ModelToResourceProfile), 
-    typeof(LearningCenter.API.Learning.Mapping.ResourceToModelProfile)),
+    typeof(LearningCenter.API.Learning.Mapping.ResourceToModelProfile),
     typeof(LearningCenter.API.Security.Mapping.ModelToResourceProfile), 
     typeof(LearningCenter.API.Security.Mapping.ResourceToModelProfile));
 
