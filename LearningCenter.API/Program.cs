@@ -5,6 +5,7 @@ using LearningCenter.API.Learning.Persistence.Contexts;
 using LearningCenter.API.Learning.Persistence.Repositories;
 using LearningCenter.API.Learning.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// OpenAPI Configuration
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "ACME Learning Center API",
+        Description = "ACME Learning Center Web Services",
+        Contact = new OpenApiContact
+        {
+            Name = "ACME.studio",
+            Url = new Uri("https://acme.studio")
+        }
+    });
+    options.EnableAnnotations();
+
+});
 
 // Add Database Connection
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

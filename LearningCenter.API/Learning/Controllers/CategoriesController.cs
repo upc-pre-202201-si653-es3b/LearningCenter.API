@@ -4,10 +4,14 @@ using LearningCenter.API.Learning.Domain.Services;
 using LearningCenter.API.Learning.Resources;
 using LearningCenter.API.Shared.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace LearningCenter.API.Learning.Controllers;
 
+[ApiController]
 [Route("/api/v1/[controller]")]
+[Produces("application/json")]
+[SwaggerTag("Create, read, update and delete Categories")]
 public class CategoriesController : ControllerBase
 {
     private readonly ICategoryService _categoryService;
@@ -30,7 +34,9 @@ public class CategoriesController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource)
+    [SwaggerResponse(200, "The operation was successful", typeof(CategoryResource))]
+    [SwaggerResponse(400, "The category data is not valid")]
+    public async Task<IActionResult> PostAsync([FromBody, SwaggerRequestBody("Category Information to Add", Required = true)] SaveCategoryResource resource)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
