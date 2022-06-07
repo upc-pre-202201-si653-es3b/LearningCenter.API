@@ -26,7 +26,6 @@
       <Folder Include="Security\Authorization\Handlers" />
       <Folder Include="Security\Authorization\Middleware" />
       <Folder Include="Security\Controllers" />
-      <Folder Include="Security\Domain\Models" />
       <Folder Include="Security\Domain\Repositories" />
       <Folder Include="Security\Domain\Services\Communication" />
       <Folder Include="Security\Mapping" />
