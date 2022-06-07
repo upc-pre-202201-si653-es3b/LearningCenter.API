@@ -20,4 +20,9 @@
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.19.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Learning\Persistence\Contexts" />
+      <Folder Include="Security" />
+    </ItemGroup>
+
 </Project>
