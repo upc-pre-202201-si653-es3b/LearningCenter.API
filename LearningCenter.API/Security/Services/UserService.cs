@@ -121,7 +121,7 @@ public class UserService : IUserService
         }
         catch (Exception e)
         {
-            throw new AppException($"An error occurred while deleting the user: {e.Message}");)
+            throw new AppException($"An error occurred while deleting the user: {e.Message}");
         }
     }
     
