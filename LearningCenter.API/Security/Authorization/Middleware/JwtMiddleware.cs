@@ -1,6 +1,7 @@
 using LearningCenter.API.Security.Authorization.Handlers.Interfaces;
 using LearningCenter.API.Security.Authorization.Settings;
 using LearningCenter.API.Security.Domain.Services;
+using Microsoft.Extensions.Options;
 
 namespace LearningCenter.API.Security.Authorization.Middleware;
 
@@ -9,10 +10,10 @@ public class JwtMiddleware
     private readonly RequestDelegate _next;
     private readonly AppSettings _appSettings;
 
-    public JwtMiddleware(RequestDelegate next, AppSettings appSettings)
+    public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
     {
         _next = next;
-        _appSettings = appSettings;
+        _appSettings = appSettings.Value;
     }
 
     public async Task Invoke(HttpContext context, IUserService userService, IJwtHandler handler)
