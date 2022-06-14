@@ -4,6 +4,7 @@ using System.Text;
 using LearningCenter.API.Security.Authorization.Handlers.Interfaces;
 using LearningCenter.API.Security.Authorization.Settings;
 using LearningCenter.API.Security.Domain.Models;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace LearningCenter.API.Security.Authorization.Handlers.Implementations;
@@ -12,9 +13,9 @@ public class JwtHandler : IJwtHandler
 {
     private readonly AppSettings _appSettings;
 
-    public JwtHandler(AppSettings appSettings)
+    public JwtHandler(IOptions<AppSettings> appSettings)
     {
-        _appSettings = appSettings;
+        _appSettings = appSettings.Value;
     }
 
     public string GenerateToken(User user)

@@ -5,6 +5,7 @@ using LearningCenter.API.Learning.Services;
 using LearningCenter.API.Security.Authorization.Handlers.Implementations;
 using LearningCenter.API.Security.Authorization.Handlers.Interfaces;
 using LearningCenter.API.Security.Authorization.Middleware;
+using LearningCenter.API.Security.Authorization.Settings;
 using LearningCenter.API.Security.Domain.Repositories;
 using LearningCenter.API.Security.Domain.Services;
 using LearningCenter.API.Security.Persistence.Repositories;
@@ -22,6 +23,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+// AppSettings Configuration
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 // OpenAPI Configuration
 builder.Services.AddSwaggerGen(options =>
